@@ -1,0 +1,27 @@
+//$body-bg: #000;
+$font-family-base: Arial, Helvetica, Sans, sans-serif, "Sans Serif";
+@import '~bootstrap/scss/bootstrap.scss';
+
+.dropdown-toggle {
+  &:after {
+    border: 0;
+  }
+}
+.btn-light {
+  &:focus {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+.bg-light {
+  background-color: transparent !important;
+  border-color: transparent;
+}
+.btn-light {
+  &:hover {
+    color: #212529;
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+  }
+}
