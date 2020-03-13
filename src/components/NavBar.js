@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef } from 'react';
 import logo from '../assets/trivago.svg';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -9,7 +9,7 @@ import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import { ChevronDown } from 'react-bootstrap-icons';
 
-export default function NavBar() {
+export default function() {
 
   const [show, setShow] = useState(false);
   const target = useRef(null);
@@ -21,6 +21,166 @@ export default function NavBar() {
     }
   };
 
+  const [currency, setCurrency] = useState('ARS');
+
+  const currencies = [
+    {
+      short: 'AED',
+      long: 'Dírham de los EAU'
+    },
+    {
+      short: 'ARS',
+      long: 'Peso argentino'
+    },
+    {
+      short: 'AUD',
+      long: 'Dólar australiano'
+    },
+    {
+      short: 'AZN',
+      long: 'Manat azerbaiyano'
+    },
+    {
+      short: 'BGN',
+      long: 'Lev búlgaro'
+    },
+    {
+      short: 'BHD',
+      long: 'Dinar bareiní'
+    },
+    {
+      short: 'BRL',
+      long: 'Real brasileño'
+    },
+    {
+      short: 'CAD',
+      long: 'Dólar canadiense'
+    },
+    {
+      short: 'CHF',
+      long: 'Franco suizo'
+    },
+    {
+      short: 'CLP',
+      long: 'Peso chileno'
+    },
+    {
+      short: 'CNY',
+      long: 'Yuan chino'
+    },
+    {
+      short: 'COP',
+      long: 'Peso colombiano'
+    },
+    {
+      short: 'CZK',
+      long: 'Corona checa'
+    },
+    {
+      short: 'DKK',
+      long: 'Corona danesa'
+    },
+    {
+      short: 'DZD',
+      long: 'Dinar argelino'
+    },
+    {
+      short: 'EGP',
+      long: 'Libra egipcia'
+    },
+    {
+      short: 'EUR',
+      long: 'Euro',
+      main: true
+    },
+    {
+      short: 'GBP',
+      long: 'Libra esterlina',
+      main: true
+    },
+    {
+      short: 'HKD',
+      long: 'Dólar de Hong Kong'
+    },
+    {
+      short: 'HRK',
+      long: 'Kuna croata'
+    },
+    {
+      short: 'HUF',
+      long: 'Florín húngaro'
+    },
+    {
+      short: 'IDR',
+      long: 'Rupia indonesia'
+    },
+    {
+      short: 'ILS',
+      long: 'Shequel israelí'
+    },
+    {
+      short: 'INR',
+      long: 'Rupia india'
+    },
+    {
+      short: 'JOD',
+      long: 'Dinar jordano'
+    },
+    {
+      short: 'JPY',
+      long: 'Yen japonés'
+    },
+    /*{
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    {
+      short: '',
+      long: ''
+    },
+    <Dropdown.Item>KRW - Won surcoreano</Dropdown.Item>
+    <Dropdown.Item>KWD - Dinar kuwaití</Dropdown.Item>
+    <Dropdown.Item>KZT - Tenge kazajo</Dropdown.Item>
+    <Dropdown.Item>LBP - Libra libanesa</Dropdown.Item>
+    <Dropdown.Item>MAD - Dírham marroquí</Dropdown.Item>
+    <Dropdown.Item>MDL - Leu moldavo</Dropdown.Item>
+    <Dropdown.Item>MXN - Peso mexicano</Dropdown.Item>
+    <Dropdown.Item>MYR - Ringgit malayo</Dropdown.Item>
+    <Dropdown.Item>NGN - Naira nigeriano*/
+    {
+      short: 'USD',
+      long: 'Dólar EE.UU.',
+      main: true
+    },
+  ];
+
+  function handleClick(short) {
+    setCurrency(short);
+  }
   return (<>
 
     <style type="text/css">{`
@@ -70,10 +230,16 @@ export default function NavBar() {
       font-size: 15px;
       padding: 15px 30px;
     }
+    
+    @media only screen and (min-width: 1080px) {
+      .noneForLargeScreen {
+        display: none;
+      }
+    }
     `}</style>
 
     <Navbar bg="light" expand="lg" className='Navbar'>
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="#home" className='noneForLargeScreen'>
         <img src={logo} alt='' style={{width: 102}}/>
       </Navbar.Brand>
 
@@ -109,51 +275,21 @@ export default function NavBar() {
           <Dropdown style={{height: '100%', width: 93, fontSize: 14}} alignRight>
             <Dropdown.Toggle id="dropdown-basic"
                              variant="light" className='menuButtons' style={{paddingRight: 16, '&::after': {border: 0}}}>
-              ARS
+              {currency}
               <ChevronDown size={22} style={{marginLeft: 10}} />
             </Dropdown.Toggle>
 
             <Dropdown.Menu>
               <Dropdown.Header>Principales monedas</Dropdown.Header>
-              <Dropdown.Item>EUR - Euro</Dropdown.Item>
-              <Dropdown.Item>GBP - Libra esterlina</Dropdown.Item>
-              <Dropdown.Item>USD - Dólar EE.UU.</Dropdown.Item>
+              {currencies.map(e => {
+                return e.main?
+                  <Dropdown.Item key={e.short} onClick={() => handleClick(e.short)}>{e.short} - {e.long}</Dropdown.Item>
+                  : null;
+              })}
               <Dropdown.Header>Todas las monedas</Dropdown.Header>
-              <Dropdown.Item>AED - Dírham de los EAU</Dropdown.Item>
-              <Dropdown.Item>ARS - Peso argentino</Dropdown.Item>
-              <Dropdown.Item>AUD - Dólar australiano</Dropdown.Item>
-              <Dropdown.Item>AZN - Manat azerbaiyano</Dropdown.Item>
-              <Dropdown.Item>BGN - Lev búlgaro</Dropdown.Item>
-              <Dropdown.Item>BHD - Dinar bareiní</Dropdown.Item>
-              <Dropdown.Item>BRL - Real brasileño</Dropdown.Item>
-              <Dropdown.Item>CAD - Dólar canadiense</Dropdown.Item>
-              <Dropdown.Item>CHF - Franco suizo</Dropdown.Item>
-              <Dropdown.Item>CLP - Peso chileno</Dropdown.Item>
-              <Dropdown.Item>CNY - Yuan chino</Dropdown.Item>
-              <Dropdown.Item>COP - Peso colombiano</Dropdown.Item>
-              <Dropdown.Item>CZK - Corona checa</Dropdown.Item>
-              <Dropdown.Item>DKK - Corona danesa</Dropdown.Item>
-              <Dropdown.Item>DZD - Dinar argelino</Dropdown.Item>
-              <Dropdown.Item>EGP - Libra egipcia</Dropdown.Item>
-              <Dropdown.Item>EUR - Euro</Dropdown.Item>
-              <Dropdown.Item>GBP - Libra esterlina</Dropdown.Item>
-              <Dropdown.Item>HKD - Dólar de Hong Kong</Dropdown.Item>
-              <Dropdown.Item>HRK - Kuna croata</Dropdown.Item>
-              <Dropdown.Item>HUF - Florín húngaro</Dropdown.Item>
-              <Dropdown.Item>IDR - Rupia indonesia</Dropdown.Item>
-              <Dropdown.Item>ILS - Shequel israelí</Dropdown.Item>
-              <Dropdown.Item>INR - Rupia india</Dropdown.Item>
-              <Dropdown.Item>JOD - Dinar jordano</Dropdown.Item>
-              <Dropdown.Item>JPY - Yen japonés</Dropdown.Item>
-              <Dropdown.Item>KRW - Won surcoreano</Dropdown.Item>
-              <Dropdown.Item>KWD - Dinar kuwaití</Dropdown.Item>
-              <Dropdown.Item>KZT - Tenge kazajo</Dropdown.Item>
-              <Dropdown.Item>LBP - Libra libanesa</Dropdown.Item>
-              <Dropdown.Item>MAD - Dírham marroquí</Dropdown.Item>
-              <Dropdown.Item>MDL - Leu moldavo</Dropdown.Item>
-              <Dropdown.Item>MXN - Peso mexicano</Dropdown.Item>
-              <Dropdown.Item>MYR - Ringgit malayo</Dropdown.Item>
-              <Dropdown.Item>NGN - Naira nigeriano</Dropdown.Item>
+              {currencies.map(e =>
+                (<Dropdown.Item key={e.short} onClick={() => handleClick(e.short)}>{e.short} - {e.long}</Dropdown.Item>)
+              )}
             </Dropdown.Menu>
           </Dropdown>
         </Form>
