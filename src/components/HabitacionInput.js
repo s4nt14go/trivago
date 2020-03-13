@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
+import PropTypes from "prop-types";
 import Col from "react-bootstrap/Col";
 import InputGroup from "react-bootstrap/InputGroup";
 import {People, Person} from "react-bootstrap-icons";
@@ -6,7 +7,6 @@ import FormControl from "react-bootstrap/FormControl";
 import Overlay from "react-bootstrap/Overlay";
 import Popover from "react-bootstrap/Popover";
 import Dropdown from "react-bootstrap/Dropdown";
-import PropTypes from "prop-types";
 
 export default function HabitacionInput(props){
 
@@ -40,9 +40,9 @@ export default function HabitacionInput(props){
       }
     `}</style>
 
-    <Col md={2} style={{padding: 3}}>
+    <Col style={{padding: 3}}>
       <InputGroup className="mb-3">
-        <InputGroup.Prepend ref={target} onClick={handleClickVisibility} className='prepends' style={{height: 34}}>
+        <InputGroup.Prepend ref={target} onClick={handleClickVisibility} className='prepends' style={{height: 38}}>
           <InputGroup.Text id="basic-addon1" style={{backgroundColor: 'transparent'}}>
             <People />
           </InputGroup.Text>

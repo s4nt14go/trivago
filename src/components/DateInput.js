@@ -33,7 +33,7 @@ const DateInput = forwardRef((props, ref) => {
 
   return <>
 
-    <Col md={2} style={{padding: 3}}>
+    <Col md={props.md} style={{padding: 3}}>
     <InputGroup className="mb-3">
       <DateRangePicker ref={pickerEl} startDate={props.startDate} singleDatePicker onApply={(e, p) => props.handleDateSelected(e, p, props.llegadaOrSalida)} locale={datePickerConfiguration}>
         <InputGroup.Prepend className='prepends'>
@@ -58,6 +58,7 @@ const DateInput = forwardRef((props, ref) => {
 export default DateInput;
 
 DateInput.propTypes = {
+  md: PropTypes.number.isRequired,
   startDate: PropTypes.object.isRequired,
   handleDateSelected: PropTypes.func.isRequired,
   llegadaOrSalida: PropTypes.string.isRequired

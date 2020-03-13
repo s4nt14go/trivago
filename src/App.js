@@ -14,6 +14,16 @@ export default function App() {
           margin-right: auto;
         }
       }
+      @media only screen and (max-width: 950px) {
+        .noneForSmallScreen {
+          display: none;
+        }
+      }
+      @media only screen and (min-width: 950px) {
+        .noneForLargeScreen {
+          display: none;
+        }
+      }
     `}</style>
 
     <NavBar />

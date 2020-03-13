@@ -8,6 +8,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Overlay from 'react-bootstrap/Overlay';
 import Popover from 'react-bootstrap/Popover';
 import { ChevronDown } from 'react-bootstrap-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser } from '@fortawesome/free-regular-svg-icons'
 
 export default function() {
 
@@ -187,7 +189,6 @@ export default function() {
       .Navbar {
         padding: 0 0 0 16px;
         height: 64px;
-        backgroundColor: transparent;
         border-bottom: thin solid #8080802b;
       }      
       .collapsed {
@@ -230,11 +231,14 @@ export default function() {
       font-size: 15px;
       padding: 15px 30px;
     }
-    
-    @media only screen and (min-width: 1080px) {
-      .noneForLargeScreen {
-        display: none;
-      }
+    .collapsed {
+      height: 100%;
+      border-radius: 0;
+      padding: 0px 12px;
+    }
+    .collapsedText {
+      font-size: 14px;
+      color: rgb(55, 69, 77);
     }
     `}</style>
 
@@ -243,9 +247,15 @@ export default function() {
         <img src={logo} alt='' style={{width: 102}}/>
       </Navbar.Brand>
 
-      <Navbar.Toggle aria-controls="basic-navbar-nav" style={noBorder}>
-        <span className="navbar-toggler-icon" />
-        <span style={{verticalAlign: 'text-bottom', marginLeft: 10}}>Menú</span>
+      <div style={{height: '100%'}}>
+      <button className='btn-light navbar-toggler collapsed' style={{position: 'absolute', right: 59}}>
+        <FontAwesomeIcon icon={faUser} style={{fontSize: 20}} /><br />
+        <span className='collapsedText'>Inicia sesión</span>
+      </button>
+      </div>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" className='btn-light collapsed' style={noBorder}>
+        <span className="navbar-toggler-icon" /><br />
+        <span className='collapsedText'>Menú</span>
       </Navbar.Toggle>
 
       <Navbar.Collapse id="basic-navbar-nav" style={{height: '100%'}}>

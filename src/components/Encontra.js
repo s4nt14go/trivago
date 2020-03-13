@@ -50,14 +50,17 @@ export default function() {
       input {
         font-size: smaller !important;
         border-left: 0 !important;
+        height: 100% !important;
       }
       .mb-3 {
-        margin-top: 2px;
+        height: 38px;
       }
-      @media only screen and (max-width: 1080px) {
-        .noneForSmallScreen {
-          display: none;
-        }
+      .buscarButton {
+        background-color: #007fad;
+        border-radius: 0;
+        font-weight: 700;
+        width: 132px;
+        border-color: #007fad;
       }
     `}</style>
 
@@ -72,7 +75,8 @@ export default function() {
         </Col>
       </Row>
 
-      <Row>
+      <Row style={{height: 43}}>
+
         <Col md={4} style={{padding: 3}}>
           <InputGroup className="mb-3">
             <InputGroup.Prepend>
@@ -87,12 +91,15 @@ export default function() {
           </InputGroup>
         </Col>
 
-        <DateInput handleDateSelected={handleDateSelected} value={llegada} llegadaOrSalida='llegada' startDate={llegada || new Date()} />
-        <DateInput handleDateSelected={handleDateSelected} value={salida}  llegadaOrSalida='salida'  startDate={salida || new Date()} ref={dateInputSalida} />
+        <DateInput md={2} handleDateSelected={handleDateSelected} value={llegada} llegadaOrSalida='llegada' startDate={llegada || new Date()} />
+        <DateInput md={2} handleDateSelected={handleDateSelected} value={salida}  llegadaOrSalida='salida'  startDate={salida || new Date()} ref={dateInputSalida} />
         <HabitacionInput show={showHabitacion} />
-        <Col md={2} style={{padding: 3}}>
-          <Button style={{backgroundColor: '#007fad', borderRadius: 0, fontWeight: 700, width: '100%', borderColor: '#007fad'}}>Buscar</Button>
-        </Col>
+        <div style={{padding: 3, maxWidth: 138}}>
+          <Button style={{width: 132}} className='buscarButton noneForSmallScreen'>Buscar</Button>
+          <Button style={{width: 44}} className='buscarButton noneForLargeScreen'>
+            <Search style={{fontSize: 20}} />
+          </Button>
+        </div>
       </Row>
 
     </Jumbotron>
