@@ -19,9 +19,12 @@ $font-family-base: Arial, Helvetica, Sans, sans-serif, "Sans Serif";
   border-color: transparent;
 }
 .btn-light {
-  &:hover {
+  &:hover, &:active {
     color: #212529;
     background-color: #e2e6ea;
     border-color: #dae0e5;
   }
+}
+.dropdown-item:active {
+  background-color: #e2e6ea;
 }
