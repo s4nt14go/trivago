@@ -10,13 +10,13 @@
 
 Design and implement in React this trivago landing page:<br />
 
-![alt text](./original720px.gif "Original")
+![alt text](./gifs/original.gif "Original")
 <br /><br /><br /><br />
 ### Result
 
 Hooks used: `useState`, `useEffect`, `useRef`, `useImperativeHandle` with `forwardRef`
 
-![alt text](./myVersion720px.gif "My version")
+![alt text](./gifs/myVersion.gif "My version")
 
 ## Install
 
